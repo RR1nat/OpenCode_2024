@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: opencode-practice
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+  servlet:
+    context-path: /calculator

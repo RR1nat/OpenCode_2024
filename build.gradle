@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'net.opencode.practice'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // --- spring ---
+
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+    runtimeOnly 'com.h2database:h2'
+
+    //implementation 'com.h2database:h2'
+    //spring.h2.console.enabled=true
+
+    // --- lombok ---
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // --- test ---
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+
+
+test {
+    jvmArgs(['-Dfile.encoding=UTF-8'])
+
+    useJUnitPlatform()
+}
+
