@@ -1,5 +1,6 @@
 package net.opencode.practice.configuration;
 
+
 import net.opencode.practice.data.CalculatorType;
 import net.opencode.practice.service.MedicalCalculatorService;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +14,8 @@ import java.util.Map;
 public class MedicalCalculatorConfiguration {
 
     @Bean
-    public Map<CalculatorType, MedicalCalculatorService> medicalCalculatorServices(List<MedicalCalculatorService> handlers) {
-        var map = new HashMap<CalculatorType, MedicalCalculatorService>();
+    public Map<CalculatorType, MedicalCalculatorService<?>> medicalCalculatorServices(List<MedicalCalculatorService<?>> handlers) {
+        var map = new HashMap<CalculatorType, MedicalCalculatorService<?>>();
 
         for (var handler : handlers) {
             map.compute(handler.getCalculatorType(), (calculatorType, medicalCalculatorService) -> {

@@ -5,6 +5,7 @@ import net.opencode.practice.data.AbstractDto;
 import net.opencode.practice.data.CalculatorType;
 import net.opencode.practice.data.ResultInfo;
 import net.opencode.practice.data.impl.FesDto;
+import net.opencode.practice.data.impl.ImtDto;
 import net.opencode.practice.service.MedicalCalculatorService;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,14 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 
 @Service
-public class FesCalculator implements MedicalCalculatorService {
+public class FesCalculator implements MedicalCalculatorService<FesDto> {
 
     @Override
-    public ResultInfo calculate(AbstractDto dto) {
-        var fesDto = (FesDto) dto;
-        var SCr = fesDto.getSerumCreatinine();
-        var UNa = fesDto.getUrineSodium();
-        var SNa = fesDto.getSerumSodium();
-        var UCr = fesDto.getUrineCreatinine();
+    public ResultInfo calculate(FesDto dto) {
+        var SCr = dto.getSerumCreatinine();
+        var UNa = dto.getUrineSodium();
+        var SNa = dto.getSerumSodium();
+        var UCr = dto.getUrineCreatinine();
         var d1 = SCr * UNa * 100;
         var d2 = SNa * UCr;
         var result = BigDecimal.valueOf((double) d1 / d2).setScale(1, RoundingMode.HALF_UP);

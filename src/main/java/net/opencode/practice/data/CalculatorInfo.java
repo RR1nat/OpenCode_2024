@@ -1,4 +1,6 @@
 package net.opencode.practice.data;
 
-public record CalculatorInfo(String info) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record CalculatorInfo(@Schema(example = "Калькулятор расчета") String info) {
 }
